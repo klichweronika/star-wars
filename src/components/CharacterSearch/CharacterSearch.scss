@@ -1,0 +1,32 @@
+@import "../../styles/colors";
+
+.search {
+    display: flex;
+    margin: 50px;
+    justify-content: center;
+    gap: 10px;
+
+    &__input {
+        padding: 20px;
+        border: 2px solid black;
+        width: 70vh;
+        border-radius: 10px;
+        outline: none;
+        font-size: 16px;
+    }
+
+    &__button {
+        background-color: $regular-orange;
+        outline: none;
+        padding: 15px 25px;
+        border: 2px #333 solid;
+        border-radius: 10px;
+        width: 20vh;
+        transition: 0.5s;
+
+        &:hover {
+            opacity: 0.6;
+            cursor: pointer;
+        }
+    }
+}
