@@ -8,24 +8,24 @@
 
     &__input {
         padding: 20px;
-        border: 2px solid black;
+        border: 1px solid $pure-black;
         width: 70vh;
-        border-radius: 10px;
+        border-radius: $circled-radius;
         outline: none;
         font-size: 16px;
     }
 
-    &__button {
+    button {
         background-color: $regular-orange;
-        outline: none;
-        padding: 15px 25px;
-        border: 2px #333 solid;
-        border-radius: 10px;
+        border: 1px solid $pure-black;
+        border-radius: $circled-radius;
         width: 20vh;
         transition: 0.5s;
+        font-size: 16px;
+        text-transform: uppercase;
 
         &:hover {
-            opacity: 0.6;
+            opacity: 0.5;
             cursor: pointer;
         }
     }
