@@ -1,0 +1,31 @@
+
+@import "../src/styles/colors";
+
+:root{
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+  
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html{
+   background-color: $dark-background-color;
+}
+
+body{
+  font-family: 'Lato', sans-serif;
+}
+
+h1 {
+  color: $regular-orange;
+}
+
+span {
+  color: $pure-white;
+}
+
