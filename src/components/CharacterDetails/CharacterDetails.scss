@@ -6,14 +6,18 @@
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: $circled-radius;
-    width: 80vh;
-    max-height: 80vh;
+    max-width: 70vh;
+    max-height: 90vh;
     display: flex;
     flex-direction: column;
     background-color: $card-background-color;
-    box-shadow: 0 0 20px $card-shadow;
+    box-shadow: 0 0 20px 15px $card-shadow;
     border: 2px solid $card-shadow;
     cursor: default;
+
+    @media (max-width: 768px) {
+        width: 100%;
+      }
 
     h3 {
         font-size: 22px;
@@ -36,6 +40,7 @@
             cursor: pointer;
             color: $pure-white;
             transition: 0.5s;
+            
 
             &:hover {
                 opacity: 0.8;
@@ -46,7 +51,7 @@
     &__text {
         display: flex;
         flex-direction: column;
-        margin: 15px;
+        margin: 25px;
 
         strong {
             line-height: 20px;

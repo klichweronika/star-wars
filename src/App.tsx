@@ -8,13 +8,15 @@ import Context from "./context/Context";
 
 function App() {
 
+  
+
   const { cartDetailsOpen } = useContext(Context);
 
   return (
     <div className="App">
       <Header />
       <CharacterSearch />
-      <SearchResult />
+      
       {cartDetailsOpen && <CharacterDetails />}
     </div>
   );
