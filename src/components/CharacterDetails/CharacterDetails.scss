@@ -1,68 +1,68 @@
 @import "../../styles/colors";
 
 .cart-details {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: $circled-radius;
-    max-width: 70vh;
-    max-height: 90vh;
+  position: fixed;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: $circled-radius;
+  max-width: 70vh;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  background-color: $card-background-color;
+  box-shadow: 0 0 20px 15px $card-shadow;
+  border: 2px solid $card-shadow;
+  cursor: default;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+
+  h3 {
+    font-size: 22px;
+  }
+
+  &__header {
+    padding: 15px 25px;
+    border-radius: $circled-radius $circled-radius 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $regular-brown;
+    color: $pure-white;
+
+    button {
+      padding: 5px 15px;
+      background-color: $dark-background-color;
+      border: 1px solid $pure-black;
+      border-radius: $circled-radius;
+      cursor: pointer;
+      color: $pure-white;
+      transition: 0.5s;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  &__text {
     display: flex;
     flex-direction: column;
-    background-color: $card-background-color;
-    box-shadow: 0 0 20px 15px $card-shadow;
-    border: 2px solid $card-shadow;
-    cursor: default;
+    padding: 10px;
+    overflow-y: auto;
 
-    @media (max-width: 768px) {
-        width: 100%;
-      }
+    strong {
+      line-height: 20px;
+      color: $pure-white;
+      padding: 15px;
 
-    h3 {
-        font-size: 22px;
-    }
-
-    &__header {
-        padding: 15px 25px;
-        border-radius: $circled-radius $circled-radius 0 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: $regular-brown;
+      span {
         color: $pure-white;
-
-        button {
-            padding: 5px 15px;
-            background-color: $dark-background-color;
-            border: 1px solid $pure-black;
-            border-radius: $circled-radius;
-            cursor: pointer;
-            color: $pure-white;
-            transition: 0.5s;
-            
-
-            &:hover {
-                opacity: 0.8;
-            }
-        }
+        font-weight: 500;
+      }
     }
-
-    &__text {
-        display: flex;
-        flex-direction: column;
-        margin: 25px;
-
-        strong {
-            line-height: 20px;
-            color: $pure-white;
-            padding: 15px;
-
-            span {
-                color: $pure-white;
-                font-weight: 500;
-            }
-        }
-
-    }
+  }
 }

@@ -1,27 +1,44 @@
-import { useContext } from 'react';
-import './CharacterDetails.scss';
-import Context from '../../context/Context';
+import "./CharacterDetails.scss";
+import { useQueries } from "@tanstack/react-query";
+import { getMovies } from "../../api/api";
 
-function CharacterDetails() {
+const CharacterDetails = ({ toggleModal, moviesId }: any) => {
+  const queryResult = useQueries({
+    queries: moviesId.map((movieId: any) => ({
+      queryKey: ["movieKey", movieId],
+      queryFn: async () => getMovies(movieId),
+    })),
+  }).map((result) => result.data);
 
-    const { cartDetailsOpen, setCartDetailsOpen } = useContext(Context);
+  console.log("queryResultData", queryResult);
 
-    return (
-        <div className="cart-details">
-            <div className="cart-details__header">
-                <h3>Title: </h3>
-                <button onClick={() => setCartDetailsOpen(!cartDetailsOpen)}>X</button>
-            </div>
-            <div className='cart-details__text'>
-                <strong>
-                    Release date: <span>1977-05-25</span>
-                </strong>
-                <strong>
-                    Opening crawl: <span>It is a period of civil war. Rebel spaceships, striking from a hidden base, have won their first victory against the evil Gala..</span>
-                </strong>
-            </div>
-        </div >
-    );
-}
+  return (
+    <div className="cart-details">
+      <>
+        <div className="cart-details__header">
+          <h3>Movies</h3>
+          <button onClick={toggleModal}>X</button>
+        </div>
+        <div className="cart-details__text">
+          {queryResult.map((result: any) => (
+            <>
+              <strong>
+                Title: <span>{result?.title}</span>
+              </strong>
+              <strong>
+                Release date: <span>{result?.release_date}</span>
+              </strong>
+              <strong>
+                Opening crawl:
+                <span> {result?.opening_crawl.substring(0, 130)}...</span>
+              </strong>
+              <hr />
+            </>
+          ))}
+        </div>
+      </>
+    </div>
+  );
+};
 
 export default CharacterDetails;

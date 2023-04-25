@@ -1,27 +1,40 @@
+import { useState } from "react";
+import "./SearchResult.scss";
+import { useQuery } from "@tanstack/react-query";
+import { getPlanet } from "../../api/api";
+import CharacterDetails from "../CharacterDetails/CharacterDetails";
 
-import { useContext } from 'react';
-import Context from '../../context/Context';
-import './SearchResult.scss';
+const SearchResult = ({ name, homeworld }: any) => {
+  const [isOpen, setIsOpen] = useState(false);
 
+  const toggleModal = () => {
+    setIsOpen(!isOpen);
+  };
 
-function SearchResult(...props: any) {
-    const { name, data } = props;
-    const { setCartDetailsOpen } = useContext(Context);
+  const findUrlId = (url: string) => {
+    const splittedUrl = url.split("/");
+    return Number(splittedUrl[splittedUrl.length - 2]);
+  };
 
-    const handleCartClick = () => {
-        setCartDetailsOpen(true);
-    };
+  const homeWorldId = findUrlId(homeworld);
 
-    return (
-        <div className="result-card" onClick={handleCartClick}>
-            <h2 className="result-card__name">name</h2>
-            <div className='result-card__details'>
-                <span>Homeworld: {name}</span>
-                <span>Population: data</span>
-            </div>
-        </div>
+  const { data } = useQuery(["planetKey", homeWorldId], async () =>
+    getPlanet(homeWorldId)
+  );
+  const moviesId = data?.films.map((film) => findUrlId(film));
 
-    );
+  return (
+    <div className="result-card" onClick={toggleModal}>
+      <h2 className="result-card__name">{name}</h2>
+      <div className="result-card__details">
+        <span>Homeworld: {data?.name}</span>
+        <span>Population:{data?.population}</span>
+      </div>
+      {isOpen && (
+        <CharacterDetails toggleModal={toggleModal} moviesId={moviesId} />
+      )}
+    </div>
+  );
 };
 
 export default SearchResult;
