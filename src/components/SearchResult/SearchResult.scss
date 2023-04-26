@@ -1,26 +1,26 @@
 @import "../../styles/colors";
 
 .result-card {
-    cursor: pointer;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: $card-background-color;
+  border-radius: $circled-radius;
+  border: 1px solid $pure-black;
+  padding: 20px;
+  max-width: 80vh;
+  align-items: center;
+  margin: 15px auto;
+
+  &__name {
+    font-size: 22px;
+    color: $pure-white;
+  }
+
+  &__details {
     display: flex;
-    flex-direction: column;
-    gap: 5px;
-    background: $card-background-color;
-    border-radius: $circled-radius;
-    border: 1px solid $pure-black;
-    padding: 20px;
-    max-width: 80vh;
-    align-items: center;
-    margin: auto;
-
-    &__name {
-        font-size: 22px;
-        color: $pure-white;
-    }
-
-    &__details {
-        display: flex;
-        flex-direction: row;
-        gap: 20px;
-    }
+    flex-direction: row;
+    gap: 20px;
+  }
 }
