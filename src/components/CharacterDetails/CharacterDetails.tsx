@@ -35,21 +35,25 @@ const CharacterDetails = ({ toggleModal, moviesId }: CharacterDetailsProps) => {
         <button onClick={toggleModal}>X</button>
       </div>
       <div className="cart-details__text">
-        {movies.map((result) => (
-          <>
-            <strong>
-              Title: <span>{result?.title}</span>
-            </strong>
-            <strong>
-              Release date: <span>{result?.release_date}</span>
-            </strong>
-            <strong>
-              Opening crawl:
-              <span> {result?.opening_crawl.substring(0, 130)}...</span>
-            </strong>
-            <hr />
-          </>
-        ))}
+        {movies.length === 0 ? (
+          <strong>No movies</strong>
+        ) : (
+          movies.map((result) => (
+            <>
+              <strong>
+                Title: <span>{result?.title}</span>
+              </strong>
+              <strong>
+                Release date: <span>{result?.release_date}</span>
+              </strong>
+              <strong>
+                Opening crawl:
+                <span> {result?.opening_crawl.substring(0, 130)}...</span>
+              </strong>
+              <hr />
+            </>
+          ))
+        )}
       </div>
     </div>
   );
