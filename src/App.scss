@@ -1,24 +1,22 @@
-
 @import "../src/styles/colors";
 
-:root{
-	display: flex;
-	flex-direction: column;
-	height: 100vh;
-  
+:root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html{
-   background-color: $dark-background-color;
+html {
+  background-color: $dark-background-color;
 }
 
-body{
-  font-family: 'Lato', sans-serif;
+body {
+  font-family: "Lato", sans-serif;
 }
 
 h1 {
@@ -29,3 +27,7 @@ span {
   color: $pure-white;
 }
 
+h3 {
+  text-align: center;
+  color: $pure-white;
+}

@@ -7,11 +7,15 @@ import { getPersons } from "../../api/api";
 const Search = () => {
   const [search, setSearch] = useState("");
 
-  const { data, refetch } = useQuery(
+  const { data, refetch, isFetching, isError } = useQuery(
     ["personKey", search],
     async () => getPersons(search),
     { enabled: false }
   );
+
+  const handleSearch = () => {
+    refetch();
+  };
 
   return (
     <>
@@ -23,17 +27,18 @@ const Search = () => {
           type="search__input"
           placeholder="Search character"
         />
-        <button
-          onClick={() => {
-            refetch();
-          }}
-        >
-          Search
+        <button onClick={handleSearch} disabled={isFetching}>
+          {isFetching ? "Loading..." : "Search"}
         </button>
       </section>
-      {data?.results.map((person) => (
-        <SearchResult key={person.name} {...person} />
-      ))}
+      {isError && <h3>Something went wrong. Please try again.</h3>}
+      {data?.results.length === 0 ? (
+        <h3>No results</h3>
+      ) : (
+        data?.results.map((person) => (
+          <SearchResult key={person.name} {...person} />
+        ))
+      )}
     </>
   );
 };

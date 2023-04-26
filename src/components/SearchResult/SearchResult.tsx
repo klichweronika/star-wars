@@ -4,7 +4,12 @@ import { useQuery } from "@tanstack/react-query";
 import { getPlanet } from "../../api/api";
 import CharacterDetails from "../CharacterDetails/CharacterDetails";
 
-const SearchResult = ({ name, homeworld }: any) => {
+type SearchResultProps = {
+  name: string;
+  homeworld: string;
+};
+
+const SearchResult = ({ name, homeworld }: SearchResultProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleModal = () => {
@@ -18,10 +23,20 @@ const SearchResult = ({ name, homeworld }: any) => {
 
   const homeWorldId = findUrlId(homeworld);
 
-  const { data } = useQuery(["planetKey", homeWorldId], async () =>
-    getPlanet(homeWorldId)
+  const { data, isLoading, error } = useQuery(
+    ["planetKey", homeWorldId],
+    async () => getPlanet(homeWorldId)
   );
-  const moviesId = data?.films.map((film) => findUrlId(film));
+
+  const moviesId = data?.films.map((film) => findUrlId(film)) || [];
+
+  if (isLoading) {
+    return <h3>Loading...</h3>;
+  }
+
+  if (error) {
+    return <h3>Error occured</h3>;
+  }
 
   return (
     <div className="result-card" onClick={toggleModal}>

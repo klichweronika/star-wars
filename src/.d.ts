@@ -1,3 +1,2 @@
-declare module '*.jpg';
-declare module '*.png';
-fafa
+declare module "*.jpg";
+declare module "*.png";
